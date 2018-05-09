@@ -4,6 +4,13 @@
 # Modified By:   Sky Hoffert
 
 
+# CONSTANTS ----------------------------------------------------------------------------------------
+TYPE_TEMPERATURE = 0
+TYPE_PRESSURE    = 1
+TYPE_GRAVITY     = 2
+TYPE_MAGNETISM   = 3
+
+
 class Environment():
     '''Simulates a basic environment that can be sampled'''
     
@@ -25,12 +32,24 @@ class Environment():
     def sample_gravitational_field(self):
         return self._gravitational_field
 
+    def sample(self, sample_type):
+        if sample_type == TYPE_GRAVITY:
+            return self._gravitational_field
+        elif sample_type == TYPE_MAGNETISM:
+            return self._magnetic_field
+        elif sample_type == TYPE_PRESSURE:
+            return self._pressure
+        elif sample_type == TYPE_TEMPERATURE:
+            return self._temperature
+        else:
+            raise ValueError('Sample Type was not a valid type')
+
 
 class InterplanetarySpaceEnvironment(Environment):
     '''An environment that could be seen in interplanetary space'''
     
-    def __init__(self, cross_section_area=1, distance_from_Sun=149.6*10^9):
-        self._temperature         = 5780 / ( distance_from_Sun * 1.38*10^-10 )
+    def __init__(self, cross_section_area=1, distance_from_sun=149.6*pow(10, 9)):
+        self._temperature         = 5780 / ( distance_from_sun * 1.38*pow(10,-10) )
         self._pressure            = 0
         self._magnetic_field      = 0
         self._gravitational_field = 0
