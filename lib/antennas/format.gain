@@ -1,0 +1,5 @@
+<elevation angle (degrees off-pointed)>,<relative gain (0 is unity)>
+
+Notes:
+Assumes azimuth=0, elevation=0 is in the direction of pointing.
+Assumes antenna is symmetrical
